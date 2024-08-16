@@ -1,5 +1,6 @@
 import React from "react";
 import HomeImg from "../images/home.jpg";
+import Modal from "./Modal";
 
 const MainContent = () => {
   return (
