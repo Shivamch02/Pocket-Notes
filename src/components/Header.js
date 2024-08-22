@@ -1,5 +1,4 @@
 import React from "react";
-import MN from "../images/mn.png";
 
 const Header = ({ imgUrl, groupName }) => {
   return (

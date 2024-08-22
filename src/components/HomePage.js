@@ -1,7 +1,5 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import MainContent from "./MainContent";
-import NotesPage from "./NotesPage";
 
 const HomePage = () => {
   return (

@@ -1,49 +1,46 @@
 import React, { useState } from "react";
+import { addGroup, selectGroup } from "../utils/groupSlice";
+
+import { useDispatch, useSelector } from "react-redux";
 import MN from "../images/mn.png";
 import Add from "../images/add.png";
-import MainContent from "./MainContent";
 import Modal from "./Modal";
 import NotesPage from "./NotesPage";
+import HomeImg from "../images/home.jpg";
 
 const Sidebar = () => {
-  const [group, setGroup] = useState([
-    { id: 1, groupName: "My Notes", imgUrl: MN, notes: ["A", "b", "c"] },
-    { id: 2, groupName: "My Notes", imgUrl: MN, notes: ["A", "b"] },
-    { id: 3, groupName: "My Notes", imgUrl: MN, notes: ["A", "c"] },
-    { id: 4, groupName: "My Notes", imgUrl: MN, notes: ["A", "b", "c"] },
-    { id: 5, groupName: "My Notes", imgUrl: MN, notes: ["b", "c"] },
-  ]);
+  const dispatch = useDispatch();
+  const groups = useSelector((store) => store.group.groups);
+  const notes = useSelector((store) => store.group.notes);
+  const selectedGroupId = useSelector((store) => store.group.selectedGroupId);
 
-  const [groupName, setGroupName] = useState("");
-  console.log(groupName);
+  const [groupText, setGroupText] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [showComponent, setShowComponent] = useState(false);
-  const [data, setData] = useState({});
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const handleCreateGroup = () => {
-    setGroup([
-      ...group,
-      {
-        id: groupName + Math.floor(Math.random()),
-        groupName: groupName,
+  const handleAddGroup = () => {
+    closeModal();
+    dispatch(
+      addGroup({
+        id: Math.random().toFixed(3),
+        groupName: groupText,
         imgUrl: MN,
-      },
-    ]);
-    setGroupName("");
+      })
+    );
   };
 
-  const handleShowNotesPage = (item) => {
-    setData({
-      imgUrl: item.imgUrl,
-      groupName: item.groupName,
-      notes: item.notes,
-    });
-    setShowComponent(true);
+  const handleSelectGroup = (groupId) => {
+    dispatch(selectGroup({ groupId }));
   };
+  const selectedGroup = groups?.find((group) => group.id === selectedGroupId);
+  const selectedGroupNotes = notes?.filter(
+    (note) => note.groupId === selectedGroupId
+  );
+
+  console.log(selectedGroupNotes);
+  console.log(selectedGroupNotes[0]?.content);
 
   return (
     <div className=" relative h-screen flex">
@@ -51,19 +48,21 @@ const Sidebar = () => {
         <div className="flex items-center text-3xl font-semibold py-8 px-8 justify-center">
           Pocket Notes
         </div>
-        {group.map((item, index) => {
+        {groups?.map((group) => {
           return (
             <div
               className="flex justify-start items-center py-4 px-8 hover:bg-gray-300 cursor-pointer rounded-lg"
-              key={index}
-              onClick={() => handleShowNotesPage(item)}
+              key={group?.id}
+              onClick={() => handleSelectGroup(group?.id)}
             >
               <img
                 className="h-10 w-10 rounded-3xl"
-                src={item.imgUrl}
+                src={group?.imgUrl}
                 alt="MN"
               />
-              <div className="text-lg font-semibold pl-6">{item.groupName}</div>
+              <div className="text-lg font-semibold pl-6">
+                {group?.groupName}
+              </div>
             </div>
           );
         })}
@@ -83,24 +82,26 @@ const Sidebar = () => {
           <input
             className="ml-4 border border-gray-400 px-2 py-1 rounded-xl"
             type="text"
-            value={groupName}
-            onChange={(e) => setGroupName(e.target.value)}
+            value={groupText}
+            onChange={(e) => setGroupText(e.target.value)}
           />
           <button
             className="ml-2 px-2 py-1 bg-blue-700 text-white rounded-lg text-center"
-            onClick={handleCreateGroup}
+            onClick={handleAddGroup}
           >
             Create
           </button>
         </Modal>
-        {showComponent ? (
+        {selectedGroup ? (
           <NotesPage
-            imgUrl={data.imgUrl}
-            groupName={data.groupName}
-            notes={data.notes}
+            imgUrl={selectedGroup.imgUrl}
+            groupName={selectedGroup.groupName}
+            notes={selectedGroupNotes}
           />
         ) : (
-          <MainContent />
+          <div className="w-4/5 flex justify-end">
+            <img src={HomeImg} alt="HomeImg" />
+          </div>
         )}
       </div>
     </div>

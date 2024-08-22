@@ -13,7 +13,7 @@ const NotesPage = ({ imgUrl, groupName, notes }) => {
       </div>
       <div className="w-[96%] mt-16">
         {notes?.map((note) => (
-          <Notes notes={note} />
+          <Notes notes={note?.content} />
         ))}
       </div>
       <div className=" w-[80%] bg-blue-800 px-5 py-3 bottom-0 fixed">
