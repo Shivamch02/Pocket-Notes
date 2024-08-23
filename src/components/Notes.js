@@ -2,7 +2,7 @@ import React from "react";
 
 const Notes = ({ notes }) => {
   return (
-    <div className="w-full shadow-lg p-4 m-6">
+    <div className="md:w-[94%] shadow-lg md:p-4 p-2 md:m-6 m-3">
       <p className="text-gray-950">{notes}</p>
       <div className="flex items-center justify-end p-4 pb-0">
         <span className="text-sm pr-2">

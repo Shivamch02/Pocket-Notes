@@ -21,20 +21,18 @@ const NotesPage = ({ imgUrl, groupName, notes, groupId }) => {
       <div className="w-full h-16 float-end bg-blue-600 px-3 flex items-center mb-4">
         <Header imgUrl={imgUrl} groupName={groupName} />
       </div>
-      <div className="w-[96%] mt-16">
+      <div className="w-[100%] mt-16">
         {notes?.map((note) => (
           <Notes notes={note?.content} />
         ))}
       </div>
-      <div className="w-[80%] bg-blue-800 px-5 py-3 bottom-0 fixed">
+      <div className="md:w-[85%] w-[100%] bg-blue-800 h-24 md:h-48 px-5 py-3 bottom-0 fixed">
         <div className="textarea  relative">
           <textarea
-            className="p-4 rounded-lg w-full shadow-sm"
+            className="p-4 rounded-lg xl:w-[94%] w-[100%] sm:w-[80%] md:h-40 shadow-sm"
             name="notes"
             value={text}
             id="notes"
-            rows={6}
-            cols={150}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter Your Text Here....."
             onKeyDown={(e) => {
@@ -44,7 +42,7 @@ const NotesPage = ({ imgUrl, groupName, notes, groupId }) => {
               }
             }}
           ></textarea>
-          <button className="absolute bottom-3 right-3">
+          <button className="absolute xl:bottom-3 bottom-2 right-2 sm:right-32 md:right-44 lg:right-48 xl:right-28">
             {text === "" ? (
               <img className="h-8 w-8" src={SendBtnImg2} alt="send" />
             ) : (

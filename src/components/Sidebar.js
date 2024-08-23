@@ -40,8 +40,8 @@ const Sidebar = () => {
 
   return (
     <div className="relative h-screen flex">
-      <div className="w-[20%] h-[100%] bg-white flex flex-col overflow-y-scroll">
-        <div className="flex items-center text-3xl font-semibold py-8 px-8 justify-center">
+      <div className="xl:w-[20%] md:w-[30%] h-[100%] bg-white md:flex flex-col overflow-y-scroll hidden w-[0%]">
+        <div className="flex items-center text-xl xl:text-3xl font-semibold py-8 px-8 justify-center">
           Pocket Notes
         </div>
         {groups?.map((group) => {
@@ -60,13 +60,13 @@ const Sidebar = () => {
                     : "G"}
                 </span>
               </div>
-              <div className="text-lg font-semibold pl-6">
+              <div className="text-sm xl:text-lg font-semibold pl-4 xl:pl-6">
                 {group?.groupName}
               </div>
             </div>
           );
         })}
-        <div className="fixed p-4 bottom-4 left-48">
+        <div className="fixed p-4 bottom-4 left-36 lg:left-48">
           <img
             onClick={openModal}
             className="h-14 w-14 rounded-full cursor-pointer"
@@ -75,7 +75,7 @@ const Sidebar = () => {
           />
         </div>
       </div>
-      <div className="absolute w-[80%] flex right-0 object-cover">
+      <div className="absolute xl:w-[80%] md:w-[70%] w-[100%] flex right-0 object-cover">
         {selectedGroup ? (
           <NotesPage
             groupName={selectedGroup.groupName}
