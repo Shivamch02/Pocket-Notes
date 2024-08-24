@@ -17,11 +17,11 @@ const NotesPage = ({ imgUrl, groupName, notes, groupId }) => {
     );
   };
   return (
-    <div className="w-full h-[calc(100vh-205px)] overflow-y-scroll">
+    <div className="w-full md:h-[calc(100vh-205px)] h-[calc(100vh-100px)] overflow-y-scroll bg-cyan-100">
       <div className="w-full h-16 float-end bg-blue-600 px-3 flex items-center mb-4">
         <Header imgUrl={imgUrl} groupName={groupName} />
       </div>
-      <div className="w-[100%] mt-16">
+      <div className="w-[100%] mt-16 bg-cyan-100">
         {notes?.map((note) => (
           <Notes notes={note?.content} />
         ))}
