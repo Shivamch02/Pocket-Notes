@@ -1,12 +1,12 @@
 import React from "react";
 
-const Notes = ({ notes }) => {
+const Notes = ({ notes, timeStamp }) => {
   return (
     <div className="md:w-[94%] shadow-lg md:p-4 p-2 md:m-6 m-3 bg-white">
       <p className="text-gray-950">{notes}</p>
       <div className="flex items-center justify-end p-4 pb-0">
         <span className="text-sm pr-2">
-          {new Date().toLocaleDateString("en-GB", {
+          {new Date(timeStamp).toLocaleDateString("en-GB", {
             day: "2-digit",
             month: "short",
             year: "numeric",
@@ -14,7 +14,7 @@ const Notes = ({ notes }) => {
         </span>{" "}
         ●{" "}
         <span className="text-sm pl-2">
-          {new Date()
+          {new Date(timeStamp)
             .toLocaleTimeString("en-US", {
               hour: "2-digit",
               minute: "2-digit",
