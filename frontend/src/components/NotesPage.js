@@ -4,6 +4,7 @@ import Notes from "./Notes";
 import SendBtnImg from "../images/60525.png";
 import SendBtnImg2 from "../images/send-btn.png";
 import axios from "axios";
+import "../../src/App.css";
 
 const NotesPage = ({ imgUrl, title, notes, groupId, state }) => {
   const [text, setText] = useState("");
@@ -41,14 +42,14 @@ const NotesPage = ({ imgUrl, title, notes, groupId, state }) => {
   }, [isResponse, state]);
 
   return (
-    <div className="w-full md:h-[calc(100vh-205px)] h-[calc(100vh-100px)] overflow-y-scroll bg-cyan-100">
+    <div className="w-full md:h-[calc(100vh-205px)] h-[calc(100vh-100px)] overflow-y-auto scrollbar-hide bg-black">
       {/* Header Section */}
-      <div className="w-full h-16 float-end bg-blue-600 px-3 flex items-center mb-4">
+      <div className="h-16 lg:w-[77%] md:w-[67%] w-[92%] float-end bg-gray-800 px-3 flex items-center rounded-lg m-3 fixed">
         <Header imgUrl={imgUrl} title={title} />
       </div>
 
       {/* Notes Section */}
-      <div className="w-full mt-16 bg-cyan-100 px-4">
+      <div className="w-full mt-20 bg-black px-4">
         {currentNotes.length > 0 ? (
           currentNotes.map((note, index) => (
             <Notes
@@ -63,10 +64,10 @@ const NotesPage = ({ imgUrl, title, notes, groupId, state }) => {
       </div>
 
       {/* Input Section */}
-      <div className="md:w-[85%] w-full bg-blue-800 h-24 md:h-48 px-5 py-3 bottom-0 fixed">
+      <div className="md:w-[85%] w-full bg-gray-800 h-24 md:h-48 px-5 py-3 bottom-0 fixed  overflow-x-auto scrollbar-hide">
         <div className="textarea relative">
           <textarea
-            className="p-4 rounded-lg xl:w-[94%] w-full sm:w-[80%] md:h-40 shadow-sm"
+            className="p-4 rounded-lg xl:w-[94%] w-full sm:w-[80%] md:h-40 shadow-sm bg-gray-700 text-white"
             name="notes"
             value={text}
             id="notes"

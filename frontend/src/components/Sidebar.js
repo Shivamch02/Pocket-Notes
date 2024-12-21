@@ -4,6 +4,7 @@ import Modal from "./Modal";
 import NotesPage from "./NotesPage";
 import HomeImg from "../images/home.jpg";
 import axios from "axios";
+import "../../src/App.css";
 
 const Sidebar = () => {
   const [notes, setNotes] = useState([]);
@@ -99,31 +100,35 @@ const Sidebar = () => {
       <div
         className={`${
           selectedGroup ? "hidden md:flex" : "flex"
-        } xl:w-[20%] md:w-[30%] w-full h-[100%] bg-teal-400 flex-col overflow-y-scroll`}
+        } xl:w-[20%] md:w-[30%] w-full h-[100%] bg-black flex-col overflow-y-auto scrollbar-hide`}
       >
-        <div className="flex items-center text-xl xl:text-3xl font-semibold py-8 px-8 justify-center">
-          Pocket Notes
-        </div>
-        {notes.map((note) => (
-          <div
-            key={note._id}
-            className="flex justify-start items-center py-4 px-8 hover:bg-gray-300 cursor-pointer rounded-lg"
-            onClick={() => handleSelectGroup(note._id)}
-          >
-            <div className="h-11 w-11 rounded-3xl bg-pink-600 flex justify-center items-center">
-              <span className="text-white">
-                {note.title
-                  ? `${note.title.charAt(0).toUpperCase()}${
-                      note.title.split(" ")[1]?.charAt(0) || "G"
-                    }`
-                  : "G"}
-              </span>
-            </div>
-            <div className="text-sm xl:text-lg font-semibold pl-4 xl:pl-6">
-              {note.title || "Untitled Group"}
-            </div>
+        <div className="bg-gray-900 text-white flex flex-col rounded-lg m-4 h-[100%]">
+          <div className="flex items-center text-xl xl:text-3xl py-8 px-8 justify-center text-yellow-600 font-bold">
+            Pocket Notes
           </div>
-        ))}
+          <div className="">
+            {notes.map((note) => (
+              <div
+                key={note._id}
+                className="flex justify-start items-center py-4 px-8 hover:bg-gray-700 cursor-pointer w-full hover:text-white bg-gray-900"
+                onClick={() => handleSelectGroup(note._id)}
+              >
+                <div className="h-11 w-11 rounded-3xl bg-gray-600 flex justify-center items-center">
+                  <span className="text-white">
+                    {note.title
+                      ? `${note.title.charAt(0).toUpperCase()}${
+                          note.title.split(" ")[1]?.charAt(0) || "G"
+                        }`
+                      : "G"}
+                  </span>
+                </div>
+                <div className="text-sm xl:text-lg pl-4 xl:pl-6 text-gray-400 hover:text-white">
+                  {note.title || "Untitled Group"}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
         <div className="fixed p-4 bottom-4 left-36 lg:left-48">
           <img
             onClick={openModal}
