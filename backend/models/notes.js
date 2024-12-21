@@ -6,12 +6,6 @@ const notesSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  chatIds: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Chat",
-    },
-  ],
   createdAt: {
     type: Date,
     default: Date.now,
