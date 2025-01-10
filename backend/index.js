@@ -7,7 +7,13 @@ const chatRouter = require("./routes/chatRouter");
 const app = express();
 
 // Middleware
-cors({ origin: "https://your-frontend-domain.vercel.app" });
+const corsOptions = {
+  origin: "https://pocket-notes-7nqm.vercel.app/",
+  methods: "GET, POST",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Environment Variables
