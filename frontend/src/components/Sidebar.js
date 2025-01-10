@@ -18,7 +18,9 @@ const Sidebar = () => {
   // Fetch all notes/groups
   const fetchNotes = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/notes");
+      const response = await axios.get(
+        "https://pocket-notes-ebon-beta.vercel.app/api/notes"
+      );
       setNotes(response.data);
     } catch (error) {
       console.error("Error fetching notes:", error);
@@ -41,9 +43,12 @@ const Sidebar = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:3000/api/notes", {
-        title: groupText,
-      });
+      const response = await axios.post(
+        "https://pocket-notes-ebon-beta.vercel.app/api/notes",
+        {
+          title: groupText,
+        }
+      );
       setNotes((prevNotes) => [...prevNotes, response.data]);
       setState(!state);
       closeModal();
@@ -57,7 +62,7 @@ const Sidebar = () => {
   const handleSelectGroup = async (groupId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/notes/${groupId}`
+        `https://pocket-notes-ebon-beta.vercel.app/api/notes/${groupId}`
       );
 
       // Check if response.data.note exists before accessing title
@@ -86,7 +91,7 @@ const Sidebar = () => {
   const fetchChats = async (groupId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/chats/${groupId}`
+        `https://pocket-notes-ebon-beta.vercel.app/api/chats/${groupId}`
       );
       setSelectedChats(response.data);
     } catch (error) {

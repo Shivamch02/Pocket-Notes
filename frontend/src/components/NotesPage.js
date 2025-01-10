@@ -15,7 +15,7 @@ const NotesPage = ({ imgUrl, title, notes, groupId, state }) => {
   const handleAddNote = async (text) => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/chats/${groupId}`,
+        `https://pocket-notes-ebon-beta.vercel.app/api/chats/${groupId}`,
         { content: text }
       );
       setIsResponse(!isResponse);
@@ -28,7 +28,7 @@ const NotesPage = ({ imgUrl, title, notes, groupId, state }) => {
   const handleGetNote = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/chats/${groupId}`
+        `https://pocket-notes-ebon-beta.vercel.app/api/chats/${groupId}`
       );
       console.log(response.data.chats);
       setCurrentNotes(response.data.chats);
